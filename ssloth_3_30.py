@@ -22,7 +22,7 @@ SSSSS   LLLLL  OOO    T    H   H
 
 def sloth():
     print("老学长忠告，年轻人努力学习才是正道！！！")
-def open_video(path_camare,path):#,fps,fx,fy,save打开摄像头，并保存视频，或者截取图像
+def open_video(path_camare,path,img_name):#,fps,fx,fy,save打开摄像头，并保存视频，或者截取图像
     '''打开摄像头，截取图片
     _open_video(self,
                 path_camare, 获取视频路径，打开摄像头就为0
@@ -56,7 +56,7 @@ def open_video(path_camare,path):#,fps,fx,fy,save打开摄像头，并保存视�
             break
         elif key == ord("w"):
             cv.imwrite(path + str(n) + ".jpg",frame)
-            print("{}".format(path +"maple"+ str(n) + ".jpg"))
+            print("{}".format(path +img_name+ str(n) + ".jpg"))
             n += 1
     #vout.release()
     cap.release()
