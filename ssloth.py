@@ -590,6 +590,26 @@ def seg_split_val(path,m_dataset):
         shutil.copy(f'{Image_path}/{i}.jpg', f'{dataset_path}/images/test/{i}.jpg')
         shutil.copy(f'{TXT_path}/{i}.txt', f'{dataset_path}/labels/test/{i}.txt')
 
+def yolo_detaset(path,names,img_format="jpg"):
+    import yaml
+    split_train_val(path)
+    text_to_yolo_(path,names,img_format)
+
+    names = names
+    quoted_names = [f'"{name}"' for name in names]
+    data = {
+        'names': quoted_names,
+        'nc': len(names),
+        'val': path + '/dataSet_path/val.txt',
+        'train': path+'/dataSet_path/train.txt'
+    }
+
+    # 写入到 data.yaml 文件
+    with open(path+'/data.yaml', 'w', encoding='utf-8') as f:
+        yaml.dump(data, f, allow_unicode=True)
+    print("生成结束，在data.yaml文件")
+
+
 def find_img_and_xml(path,name):
     '''
     find_img_and_xml(F:/yolo/yolov5/maple",'crosswalksign')
