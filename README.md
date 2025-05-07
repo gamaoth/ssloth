@@ -2,6 +2,20 @@
 只是一个提供给实验室入门的包
 # yolov5模型预训练
 ## 对于标注出的文件是.xml后缀的
+### 一步走
+可以使用一步完成函数
+yolo_detaset(path,names,img_format="jpg")
+
+path是路径，names是种类，img_format是图片的后缀，默认是jpg
+
+示例
+
+	yolo_detaset("F:/yolo/yolov5/maple",["pic","dog","cat"])
+
+和分步走的区别是能够直接生成yaml文件，直接使用
+
+### 分步走
+
 第一步先使用
 
 split_train_val()
