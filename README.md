@@ -6,19 +6,18 @@ Sloth 是一个轻量级的工具包，主要用于帮助实验室新手快速�
 ## 🧠 使用说明
 ### ✅ 一步完成：快速生成训练所需文件
 
-yolo_detaset(path, names, img_format="jpg")
+yolo_detaset(path, img_format="jpg")
  
 path：数据集路径
 
-names：类别名称列表（如：["dog", "cat"]）
 
 img_format：图像格式（默认 "jpg"）
 
 示例：
 
-	yolo_detaset("F:/yolo/yolov5/maple", ["pic", "dog", "cat"])
+	yolo_detaset("F:/yolo/yolov5/maple")
  
-此函数将完成数据划分、标签转换及 data.yaml 自动生成，可直接用于 YOLOv5 训练。
+此函数将完成数据划分、标签转换及 calss.txt 自动生成，修改成class.yaml,可直接用于 YOLOv5 训练。
 
 ### 🧩 分步骤执行（推荐了解底层过程，使用了一步完成就不需要使用分步了）
 
