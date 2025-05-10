@@ -601,9 +601,9 @@ def yolo_detaset(path,img_format="jpg"):
     label_set = set()
 
     # 遍历 voc 文件夹中的所有 XML 文件
-    for filename in os.listdir(voc_dir+"/Annotations"):
+    for filename in os.listdir(path+"/Annotations"):
         if filename.endswith(".xml"):
-            filepath = os.path.join(voc_dir+"/Annotations", filename)
+            filepath = os.path.join(path+"/Annotations", filename)
             tree = ET.parse(filepath)
             root = tree.getroot()
 
@@ -616,13 +616,13 @@ def yolo_detaset(path,img_format="jpg"):
     label_list = sorted(label_set)
 
     # 写入 output_txt 文件
-    with open(voc_dir+"/class.txt", "w") as f:
-        f.write(f"train: {path+"/dataSet_path/train.txt"}")
-        f.write(f"val: {path+"/dataSet_path/val.txt"}")
+    with open(path+"/class.txt", "w") as f:
+        f.write(f"train: {path+"/dataSet_path/train.txt"}\n")
+        f.write(f"val: {path+"/dataSet_path/val.txt"}\n")
         f.write(f"nc: {len(label_list)}\n")
         f.write(f'names: {label_list}\n')
 
-    print(f"提取完成，共有 {len(label_list)} 类，结果已保存至 {voc_dir+"/class.txt"}")
+    print(f"提取完成，共有 {len(label_list)} 类，结果已保存至 {path+"/class.txt"}")
     text_to_yolo_(path,label_list,img_format)
 
 
