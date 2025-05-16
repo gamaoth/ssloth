@@ -84,6 +84,7 @@ def file_name(path,num = 0,new_name='_',cal='.jpg'):
         os.rename(oldname, newname)  # 用os模块中的rename方法对文件改名
         print(oldname, '======>', newname)
 
+
         n += 1
         num += 1
 def img_size(old_path,new_path,img_size):#改变文件夹下图片的大小
