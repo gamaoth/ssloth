@@ -13,7 +13,7 @@ yolo_detaset(path, img_format="jpg")
 - img_format：图像格式（默认 "jpg"）
 
 示例：
-```
+```python
 yolo_detaset("F:/yolo/yolov5/maple")
  ```
 此函数将完成数据划分、标签转换及 calss.txt 自动生成，修改成class.yaml,可直接用于 YOLOv5 训练。
@@ -21,7 +21,7 @@ yolo_detaset("F:/yolo/yolov5/maple")
 ### 🧩 分步骤执行（推荐了解底层过程，使用了一步完成就不需要使用分步了）
 
 #### 第一步：划分训练集与验证集
-```
+```python
 split_train_val("F:/yolo/yolov5/maple")
 ```
 数据目录结构应如下：
@@ -31,11 +31,11 @@ maple/
 --------├── images/         # 存放图像文件（.jpg）
 ```
 #### 第二步：生成 YOLO 标签格式
-```
+```python
 text_to_yolo_("F:/yolo/yolov5/maple", ["pic"])
 ```
 如有多个类别：
-```
+```python
 text_to_yolo_("F:/yolo/yolov5/maple", ["pic", "dog", "cat"])
 ```
 执行完后，请检查 labels/ 文件夹下是否所有 .txt 文件都非空。
@@ -47,7 +47,7 @@ xml_to_text("F:/yolo/yolov5/maple")
 ```
 ## 🔍 检查数据一致性
 确保 images/ 与 Annotations/ 中的文件一一对应：
-```
+```python
 find_img_and_xml("F:/yolo/yolov5/2024deep_learning/",
 		 ['crosswalksign', 'liftspeedlimitsign', 'speedlimitsign', 'redlight',
 		  'turnleftsign', 'greenlight', 'changroad', 'warning', 'turnrightsign'])
@@ -56,7 +56,7 @@ find_img_and_xml("F:/yolo/yolov5/2024deep_learning/",
 
 ## 🎥 打开摄像头拍照
 从摄像头或视频流中截取图像保存：
-```
+```python
 open_video(0, "F:/sloth/", "sloth")
 ```
 0 表示使用本地摄像头
