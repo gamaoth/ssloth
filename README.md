@@ -5,12 +5,12 @@ Sloth 是一个轻量级的工具包，主要用于帮助实验室新手快速�
 
 ## 🧠 使用说明
 ### ✅ 一步完成：快速生成训练所需文件
-```
+```python
 yolo_detaset(path, img_format="jpg")
 ```
-path：数据集路径
+- path：数据集路径
 
-img_format：图像格式（默认 "jpg"）
+- img_format：图像格式（默认 "jpg"）
 
 示例：
 ```
