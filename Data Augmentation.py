@@ -4,6 +4,7 @@ import numpy as np
 from pathlib import Path
 import random
 import shutil
+from tqdm import tqdm,tgrange
 
 class YOLODataAugmenter:
     def __init__(self, input_dir, output_dir, augmentations=None):
@@ -68,7 +69,7 @@ class YOLODataAugmenter:
 
         if len(boxes) > 0:
             # 调试：打印 boxes 形状和内容
-            print(f"Rotating image with {len(boxes)} boxes: {boxes}")
+            # print(f"Rotating image with {len(boxes)} boxes: {boxes}")
 
             # 将 YOLO 格式（中心点 x, y, 宽, 高）转换为四个角点
             n_boxes = boxes.shape[0]
@@ -83,7 +84,7 @@ class YOLODataAugmenter:
             points[:, 1, 3] = boxes[:, 2] + boxes[:, 4] / 2  # 右下角 y
 
             # 调试：打印 points 形状
-            print(f"points shape: {points.shape}")
+            # print(f"points shape: {points.shape}")
 
             # 对所有角点应用旋转变换
             points = np.einsum('ij,kjl->kil', M[:, :2], points)  # 形状：(n_boxes, 2, 4)
@@ -96,8 +97,8 @@ class YOLODataAugmenter:
             y_max = points[:, 1, :].max(axis=1)  # 所有角点的 y 最大值
 
             # 调试：打印 x_min, x_max 等形状
-            print(f"x_min shape: {x_min.shape}, x_max shape: {x_max.shape}")
-            print(f"boxes[:, 1] shape: {boxes[:, 1].shape}")
+            # print(f"x_min shape: {x_min.shape}, x_max shape: {x_max.shape}")
+            # print(f"boxes[:, 1] shape: {boxes[:, 1].shape}")
 
             # 更新 YOLO 格式的边界框
             boxes[:, 1] = (x_min + x_max) / 2 / w  # 新 x_center
@@ -181,7 +182,9 @@ class YOLODataAugmenter:
 
     def process_dataset(self, num_augmentations=3):
         """Process all images in the input directory."""
-        for image_path in self.input_dir.glob("*.jpg"):
+        image_paths = list(self.input_dir.glob("*.jpg"))
+        # 使用 tqdm 包装循环
+        for image_path in tqdm(image_paths, desc="Processing images"):
             txt_path = self.input_dir / f"{image_path.stem}.txt"
             if txt_path.exists():
                 self.augment(image_path, txt_path, num_augmentations)
@@ -191,7 +194,7 @@ class YOLODataAugmenter:
 
 if __name__ == "__main__":
     input_dir = "E:/sloth"
-    output_dir = "E:/sloth"
+    output_dir = "E:/msloth"
 
     augmenter = YOLODataAugmenter(input_dir, output_dir)
     augmenter.process_dataset(num_augmentations=10)
