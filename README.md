@@ -67,7 +67,7 @@ open_video(0, "F:/sloth/", "sloth")
 
 
 ## 数据增强
-将jpg和txt文件放在同一个目录下，修改代码底部的输入变量
+将jpg一个目录下，修改代码底部的输入变量
 ```
     input_dir = "E:/sloth"
     output_dir = "E:/sloth"
